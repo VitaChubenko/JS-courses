@@ -1,0 +1,63 @@
+﻿<script>
+    //1. реализовать функцию которая вернет сумму элементов произвольного массива
+    function sum(input){
+             
+        if (toString.call(input) !== "[object Array]")
+            return false;
+      
+        var total =  0;
+        for(var i=0; i<input.length; i++)
+        {                  
+            if(isNaN(input[i])){
+                continue;
+            }
+            total += Number(input[i]);
+        }
+        return total;
+    }
+
+    console.log(sum(['fdfd', 'aewf', '5', 9, 1000, 12, -11, 3])); //1018
+
+    //2. реализовать функцию которая принимает произвольный массив и возвращает отсортированный по возростанию, сделать двумя способами, через метод sort и через цикл for
+    var unsortedArr = [5, -6, 'rt', 'qwq', 'a', 45];
+    unsortedArr.sort(); //[-6, 45, 5, "a", "qwq", "rt"]
+
+    function sortAscending(arr) {
+        for (let i = arr.length-1; i >= 0; i--) {
+            for (let j = i; j >= 0; j--) {
+                if (arr[i] < arr[j]) {
+                    var temp = arr[i];
+                    arr[i] = arr[j];
+                    arr[j] = temp;
+                };
+            };
+        };
+        return arr;
+    };
+
+    console.log(sortAscending(['fdfd', 'aewf', '5', 9, 1000, 12, -11, 3])); //[-11, 3, "5", "aewf", "fdfd", 9, 12, 1000]
+
+    //3. реализовать функцию которая возвращает массив с уникальными элементами // [1,1,2,3,1,2] => [1,2,3]
+    function getUnique(value, index, self) { 
+        return self.indexOf(value) === index;
+    }
+    var a = ['a', 1, 'a', 2, '1'];
+    var unique = a.filter(getUnique); // ['a', 1, 2, '1']
+
+    //4. реализовать функцию которая возвращает массив с числами фибоначчи, количество которых зависит от переданного значения при вызове функции
+    var getFibonacciSeries = function (n) 
+    {
+        if (n===1) 
+        {
+            return [0];
+        } 
+        else 
+        {
+            var s = getFibonacciSeries(n - 1);
+            s.push(s[s.length - 1] + s[s.length - 2]);
+            return s;
+        }
+    };
+
+    console.log(getFibonacciSeries(8)); //[0, 1, 1, 2, 3, 5, 8, 13, 21]
+</script>
